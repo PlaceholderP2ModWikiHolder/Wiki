@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>GameInfo - PlaceholderMod Wiki</title>
+    <title>Render Passes - PlaceholderMod Wiki</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "GameInfo";
-        var mkdocs_page_input_path = "filesystem\\gameinfo.md";
+        var mkdocs_page_name = "Render Passes";
+        var mkdocs_page_input_path = "rendering\\renderpasses.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -75,16 +75,10 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">File System</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../filesystem/">Working With Files</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filesystem/filesystem/">Working With Files</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">GameInfo</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#accessing-gameinfotxt">Accessing GameInfo.txt</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#game-specific-data">Game Specific Data</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filesystem/gameinfo/">GameInfo</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Editor</span></p>
@@ -97,8 +91,14 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Rendering</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../rendering/renderpasses/">Render Passes</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Render Passes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#built-in-render-passes">Built-In Render Passes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#defining-a-custom-render-pass">Defining a Custom Render Pass</a>
+    </li>
+    </ul>
                   </li>
               </ul>
       </div>
@@ -115,8 +115,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">File System</li>
-      <li class="breadcrumb-item active">GameInfo</li>
+          <li class="breadcrumb-item">Rendering</li>
+      <li class="breadcrumb-item active">Render Passes</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -125,43 +125,64 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="gameinfo">GameInfo</h1>
-<p>PlaceholderMod, like Source Engine mods, includes a <code>gameinfo.txt</code> file in its root Game directory. During development you may need to access the contents stored in the <code>gameinfo.txt</code> file through the C# API.</p>
-<h2 id="accessing-gameinfotxt">Accessing GameInfo.txt</h2>
-<p>The game's <code>gameinfo.txt</code> can be accessed through the GameInfo class. Since <code>gameinfo.txt</code> uses the <a href="../../fileformats/keyvalues">KeyValues</a> format, the class provides standard functions for collecting data from KeyValues, along with gameinfo-specific functions.</p>
-<h2 id="game-specific-data">Game Specific Data</h2>
+                <h1 id="render-passes">Render Passes</h1>
+<p>PlaceholderMod handles Rendering of different object types through a "Render Pass" system.</p>
+<h2 id="built-in-render-passes">Built-In Render Passes</h2>
 <table>
 <thead>
 <tr>
-<th>Function</th>
-<th>Data</th>
-<th>GameInfo Definition</th>
+<th>Render Pass</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>GetGameName()</td>
-<td>Game Name/Title.</td>
-<td>Defined in the <code>game</code> KeyValue</td>
+<td><strong>Mesh Entity Pass</strong></td>
+<td>Renders all Mesh Entities.</td>
 </tr>
 <tr>
-<td>GetSteamAppID()</td>
-<td>Steam App ID of the Mounted Game.</td>
-<td>Defined in the <code>SteamAppId</code> KeyValue</td>
-</tr>
-<tr>
-<td>GetMountedPaths()</td>
-<td>Path of all Mounted Games.</td>
-<td>Defined in the <code>Game</code> KeyValue(s)</td>
+<td><strong>Screenspace GUI Pass</strong></td>
+<td>Renders all Screenspace GUIs to the screen.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="defining-a-custom-render-pass">Defining a Custom Render Pass</h2>
+<p>Code Mods allow you to define custom Render Passes via their Entry-Point. To create a new Render Pass, define a class that inherits from <code>BaseRenderPass</code>, and then register it in your Mod's Entry-Point using <code>RenderPassManager.RegisterPass(new PassClassName());</code></p>
+<p><em>Render Pass Definition:</em></p>
+<pre><code class="language-CSharp">public class ScreenspaceGUIPass : BaseRenderPass
+{
+    // Enable Blending
+    public override List&lt;RenderFlag&gt; RenderPassFlags =&gt; new List&lt;RenderFlag&gt; { RenderFlag.Blend };
+
+    // Run RenderEntity on render
+    public override void OnRender() =&gt; RenderEntities&lt;GUICanvasEntity&gt;(EntityManager.Root);
+
+    // Render Screenspace GUIs
+    protected override void RenderEntity&lt;TEntity&gt;(TEntity entity)
+    {
+        if (entity is GUICanvasEntity guiEntity)
+        {
+            Renderer.RenderScreenspaceGUI(guiEntity);
+        }
+    }
+}
+</code></pre>
+<p><em>Render Pass Registry:</em></p>
+<pre><code class="language-CSharp">// Entry-Point for MyMod
+public class MyMod : IMod
+{
+    // Runs once on Mod Load
+    public void OnLoad()
+    {
+        RenderPassManager.RegisterPass(new ScreenspaceGUIRenderPass()); // Register Screenspace GUI Render Pass
+    }
+}
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../filesystem/" class="btn btn-neutral float-left" title="Working With Files"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../editor/plugins/" class="btn btn-neutral float-right" title="Editor Plugins">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../editor/gizmos/" class="btn btn-neutral float-left" title="Gizmos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -184,10 +205,8 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../filesystem/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../editor/gizmos/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../../editor/plugins/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
