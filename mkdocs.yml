@@ -14,6 +14,7 @@ nav:
     - Intro to VistaGUI: gui/intro.md
     - Events: gui/events.md
     - Element Manipulation: gui/elementmanipulation.md
+    - Vista Elements: gui/vistaelements.md
     - Tutorials: gui/tutorials.md
   - Modding:
     - Intro to Modding: modding/intro.md
