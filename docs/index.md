@@ -10,6 +10,7 @@ Currently, PlaceholderMod supports Code Mods, Content Mods, and standalone game-
     <a href="gui/intro" title="Get started with the VGUI replacement, VistaGUI.">VistaGUI</a>&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="modding/intro" title="Get started with creating Code and Content mods.">Modding</a>&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="editor/editorentities" title="Get started with working with the Hammer replacement, the Editor.">Editor</a><br>
-    <a href="filesystem/filesystem" title="Learn about File Format interaction.">File System</a>
+    <a href="filesystem/filesystem" title="Learn about File Format interaction.">File System</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="rendering/renderpasses" title="Interact with the underlying renderer.">Rendering</a>
   </h3>
 </center>
