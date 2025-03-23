@@ -1,5 +1,5 @@
 # Intro To Modding
-By default, PlaceholderMod ships with enhanced modding support for both Content and Code mods. While mods cannot modify existing engine code, they can extend it by adding features like scripted Game Components.
+By default, PlaceholderMod ships with enhanced modding support for both Content and Code mods. While mods cannot modify existing engine code, they can extend it by adding features like scripted Entities.
 
 Mods are highly versatile and capable. For instance, the Editor itself is an Engine Mod.
 
