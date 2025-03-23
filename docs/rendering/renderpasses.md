@@ -1,5 +1,5 @@
 # Render Passes
-PlaceholderMod handles Rendering of different object types through a "Render Pass" system.
+PlaceholderMod handles Rendering of various object types through a "Render Pass" system. This system breaks down the rendering process into multiple passes, with each pass dedicated to rendering specific elements or effects in distinct ways. Render Passes allow for fine-tuned control and manipulation for objects in the world.
 
 ## Built-In Render Passes
 
