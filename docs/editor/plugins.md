@@ -1,0 +1,2 @@
+# Editor Plugins
+The Editor allows for functionality to be extended through Plugins. Internally, plugins are essentially the same as Mods, with the only difference being a plugin's `.dll` links to both `Engine.dll` and `Editor.dll`.

@@ -1,0 +1,28 @@
+site_name: PlaceholderMod Wiki
+theme: readthedocs
+markdown_extensions:
+  - admonition
+nav:
+  - Home:
+    - About: index.md
+  - Entities:
+    - Intro to Entities: entities/entityintro.md
+    - Global Entities: entities/globalentities.md
+  - File Formats:
+    - KeyValues: fileformats/keyvalues.md
+  - GUI:
+    - Intro to VistaGUI: gui/intro.md
+    - Events: gui/events.md
+    - Element Manipulation: gui/elementmanipulation.md
+    - Tutorials: gui/tutorials.md
+  - Modding:
+    - Intro to Modding: modding/intro.md
+    - Code Mods: modding/codemods.md
+  - File System:
+    - Working With Files: filesystem/filesystem.md
+    - GameInfo: filesystem/gameinfo.md
+  - Editor:
+    - Editor Plugins: editor/plugins.md
+    - Editor Entities: editor/editorentities.md
+    - Gizmos: editor/gizmos.md
+
