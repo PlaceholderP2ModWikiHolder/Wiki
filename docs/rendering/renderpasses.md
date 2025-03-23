@@ -5,7 +5,7 @@ PlaceholderMod handles Rendering of different object types through a "Render Pas
 
 | Render Pass         | Purpose                                                   |
 |---------------------|-----------------------------------------------------------|
-| **Mesh Entity Pass**    | Renders all Mesh Entities. |
+| **Opaque Pass**    | Renders all Mesh Entities that are Opaque (Non-Transparent) |
 | **Screenspace GUI Pass**    | Renders all Screenspace GUIs to the screen. |
 
 ## Defining a Custom Render Pass
