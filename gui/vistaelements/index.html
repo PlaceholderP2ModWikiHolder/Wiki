@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Intro to VistaGUI - PlaceholderMod Wiki</title>
+    <title>Vista Elements - PlaceholderMod Wiki</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Intro to VistaGUI";
-        var mkdocs_page_input_path = "gui\\intro.md";
+        var mkdocs_page_name = "Vista Elements";
+        var mkdocs_page_input_path = "gui\\vistaelements.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -58,21 +58,17 @@
               </ul>
               <p class="caption"><span class="caption-text">GUI</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Intro to VistaGUI</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#front-end">Front-End</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#back-end-engine-interaction">Back-End (Engine Interaction)</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#combining-javascript-and-c">Combining JavaScript and C#</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../intro/">Intro to VistaGUI</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../events/">Events</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../elementmanipulation/">Element Manipulation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../vistaelements/">Vista Elements</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Vista Elements</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#using-vista-elements">Using Vista Elements</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Tutorials</a>
                   </li>
@@ -120,7 +116,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">GUI</li>
-      <li class="breadcrumb-item active">Intro to VistaGUI</li>
+      <li class="breadcrumb-item active">Vista Elements</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -129,21 +125,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="intro-to-vistagui">Intro to VistaGUI</h1>
-<p>VistaGUI is the complete replacement for Source Engine's GUI System, phasing out the outdated <a href="https://developer.valvesoftware.com/wiki/VGUI_Documentation">VGUI</a>. VistaGUI is more similar in workflow to Valve's newer GUI System, <a href="https://developer.valvesoftware.com/wiki/Panorama">Panorama</a>, by heavily utilizing Web Development techniques.</p>
-<h2 id="front-end">Front-End</h2>
-<p>A VistaGUI Frontend is built using standard Web Development tools like HTML, CSS and optionally JavaScript. Unlike typical HTML, however, it doesn't require defining metadata or specifying itself as HTML.</p>
-<h2 id="back-end-engine-interaction">Back-End (Engine Interaction)</h2>
-<p>When building a GUI, it will eventually need to integrate with the Engine. In Vista, this is done through <a href="../events">Events</a>. An Event is triggered from HTML or JavaScript and then executes code via the C# API.</p>
-<h2 id="combining-javascript-and-c">Combining JavaScript and C#</h2>
-<p>With the option of two seperate scripting languages, it can be difficult to determine when to use each one. Generally, JavaScript should be used for all functionality that doesn't require Engine interaction, while C# should be used for anything that involves Engine interaction.</p>
-<p>Using JavaScript for Front-End isn't a necessity as C# can be used for functionality typically handled by JavaScript. However, JavaScript has no access to the Scripting API and cannot manipulate the Engine alone.</p>
+                <h1 id="vista-elements">Vista Elements</h1>
+<p>PlaceholderMod ships with custom VistaGUI Elements designed to simplify the process of developing Game GUIs. Below is a list of all custom Elements along with their respective <code>.js</code> file.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+<th><code>.js</code> File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;vista-panel&gt;</code></td>
+<td>A Draggable Panel</td>
+<td><code>panels.js</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="using-vista-elements">Using Vista Elements</h2>
+<p>To use a Vista Element in your HTML, include the appropriate <code>.js</code> file from <code>gui/elements</code> and then treat it like any other HTML Element. For example, to use <code>&lt;vista-panel&gt;</code> add the following line to your file's <code>&lt;head&gt;</code>: <code>&lt;script src="file:///elements/panels.js"&gt;&lt;/script&gt;</code> and then you can add it to the page like so:</p>
+<pre><code class="language-HTML">&lt;vista-panel&gt;
+    &lt;p&gt;My Vista Panel&lt;/p&gt;
+&lt;/vista-panel&gt;
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../fileformats/keyvalues/" class="btn btn-neutral float-left" title="KeyValues"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../events/" class="btn btn-neutral float-right" title="Events">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../elementmanipulation/" class="btn btn-neutral float-left" title="Element Manipulation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tutorials/" class="btn btn-neutral float-right" title="Tutorials">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -166,10 +177,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../fileformats/keyvalues/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../elementmanipulation/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../events/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../tutorials/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
