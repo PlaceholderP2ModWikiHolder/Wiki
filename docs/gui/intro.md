@@ -1,5 +1,5 @@
 # Intro to VistaGUI
-VistaGUI is the complete replacement for the GUI System, phasing out Source Engine's outdated [VGUI](https://developer.valvesoftware.com/wiki/VGUI_Documentation). VistaGUI is more similar in workflow to Valve's newer GUI System, [Panorama](https://developer.valvesoftware.com/wiki/Panorama), by heavily utilizing Web Development techniques.
+VistaGUI is the complete replacement for Source Engine's GUI System, phasing out the outdated [VGUI](https://developer.valvesoftware.com/wiki/VGUI_Documentation). VistaGUI is more similar in workflow to Valve's newer GUI System, [Panorama](https://developer.valvesoftware.com/wiki/Panorama), by heavily utilizing Web Development techniques.
 
 ## Front-End
 A VistaGUI Frontend is built using standard Web Development tools like HTML, CSS and optionally JavaScript. Unlike typical HTML, however, it doesn't require defining metadata or specifying itself as HTML.
