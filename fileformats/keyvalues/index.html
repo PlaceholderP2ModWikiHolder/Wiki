@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>KeyValues - PlaceholderMod Wiki</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "KeyValues";
+        var mkdocs_page_input_path = "fileformats\\keyvalues.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> PlaceholderMod Wiki
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">About</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Entities</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/entityintro/">Intro to Entities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/globalentities/">Global Entities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">File Formats</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">KeyValues</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#parent-keys">Parent Keys</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-values">Key Values</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#supported-value-datatypes">Supported Value Datatypes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#c-api">C# API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#gameinfo-example">GameInfo Example</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">GUI</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gui/intro/">Intro to VistaGUI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gui/events/">Events</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gui/elementmanipulation/">Element Manipulation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gui/tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Modding</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../modding/intro/">Intro to Modding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../modding/codemods/">Code Mods</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">File System</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filesystem/filesystem/">Working With Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filesystem/gameinfo/">GameInfo</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Editor</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/plugins/">Editor Plugins</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/editorentities/">Editor Entities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/gizmos/">Gizmos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">PlaceholderMod Wiki</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">File Formats</li>
+      <li class="breadcrumb-item active">KeyValues</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="keyvalues-file-format">KeyValues File Format</h1>
+<p>During Mod development, you might need to store data in an easy-to-use text format. For this purpose, we use Valve's <a href="https://developer.valvesoftware.com/wiki/KeyValues">KeyValues</a> format.</p>
+<h2 id="parent-keys">Parent Keys</h2>
+<p>Parent Keys contain Nested Parent Keys and Key Values. They are defined by a name, followed by an opening curly brace <code>{</code>, the contents of the Parent Key, and a closing curly brace <code>}</code>.</p>
+<pre><code class="language-KeyValues">Name 
+{
+    any other parent keys or key values would go here.
+}
+</code></pre>
+<h2 id="key-values">Key Values</h2>
+<p>Key Values contain accessible variable data in text form. They are defined by a Key (Name), followed by an indent and the desired Value.</p>
+<pre><code class="language-KeyValues">Name    &quot;Value&quot;
+</code></pre>
+<h3 id="supported-value-datatypes">Supported Value Datatypes</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Formatting Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integer</td>
+<td>"123"</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>"123.1"</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>"true"</td>
+</tr>
+<tr>
+<td>String</td>
+<td>"string"</td>
+</tr>
+<tr>
+<td>Vector3</td>
+<td>"(1 2 3)" <em>OR</em> "1 2 3"</td>
+</tr>
+<tr>
+<td>Vector4</td>
+<td>"(1 2 3 4)" <em>OR</em> "1 2 3 4"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-api">C# API</h2>
+<p>The KeyValues Format can be parsed through the KeyValuesFormat Class. This Class breaks a KeyValues file into the following structure.</p>
+<pre><code class="language-KeyValues">ParentKey
+├── ChildParentKey
+│   ├── ChildKeyValue
+│   └── ChildKeyValue
+└── ChildKeyValue
+</code></pre>
+<p>To parse a KeyValue file using the C# API, first read the file contents, then create a new instance of the <code>KeyValuesFormat</code> class like this:
+<code>new KeyValuesFormat(file_contents)</code></p>
+<h3 id="gameinfo-example">GameInfo Example</h3>
+<p>The following is an example of parsing a KeyValues file and getting Values from it to parse GameInfo.txt:</p>
+<pre><code class="language-CSharp">    /// &lt;summary&gt;
+    /// Holds data from gameinfo.txt.
+    /// &lt;/summary&gt;
+    public class GameInfoFormat
+    {
+        public KeyValuesFormat KeyValues;
+
+        // Data
+        public string GameName;
+        public int SteamAppID;
+
+        public GameInfoFormat(string content)
+        {
+            // Load KeyValues
+            KeyValues = new KeyValuesFormat(content);
+
+            // Populate Data
+            GameName = (string) KeyValues.GetKeyValue(&quot;game&quot;).Value;
+            SteamAppID = (int) KeyValues.GetKeyValue(&quot;SteamAppId&quot;).Value;
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../entities/globalentities/" class="btn btn-neutral float-left" title="Global Entities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../gui/intro/" class="btn btn-neutral float-right" title="Intro to VistaGUI">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../entities/globalentities/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../gui/intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

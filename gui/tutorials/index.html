@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Tutorials - PlaceholderMod Wiki</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tutorials";
+        var mkdocs_page_input_path = "gui\\tutorials.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> PlaceholderMod Wiki
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">About</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Entities</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/entityintro/">Intro to Entities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/globalentities/">Global Entities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">File Formats</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../fileformats/keyvalues/">KeyValues</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">GUI</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../intro/">Intro to VistaGUI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../events/">Events</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../elementmanipulation/">Element Manipulation</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Tutorials</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#creating-a-screenspace-gui-entity">Creating a Screenspace GUI Entity</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Modding</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../modding/intro/">Intro to Modding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../modding/codemods/">Code Mods</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">File System</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filesystem/filesystem/">Working With Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filesystem/gameinfo/">GameInfo</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Editor</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/plugins/">Editor Plugins</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/editorentities/">Editor Entities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/gizmos/">Gizmos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">PlaceholderMod Wiki</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">GUI</li>
+      <li class="breadcrumb-item active">Tutorials</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tutorials">Tutorials</h1>
+<h2 id="creating-a-screenspace-gui-entity">Creating a Screenspace GUI Entity</h2>
+<p>In this tutorial, we'll create an Entity that renders a VistaGUI Canvas to the screen when placed in a Map and add a button to generate a random number, all written in C#.</p>
+<p>To get started, create a new blank Entity in your project that inherits from <code>ScreenspaceGUICanvas</code> and implements the <code>Start()</code> method. This file can have any name, but for this Tutorial we will be naming it <code>MyScreenspaceCanvas.cs</code>.</p>
+<pre><code class="language-CSharp">public class MyScreenspaceCanvas : ScreenspaceGUICanvas
+{
+    // This function will run once on start.
+    public override void Start()
+    {
+
+    }
+}
+</code></pre>
+<p>Now we have an empty GUI Entity that we can use in-game, but we haven't created a GUI to render yet. Let's make a new <code>.html</code> file inside our game's <code>gui</code> folder. For this tutorial, we'll name the file <code>my-screenspace.html</code>.</p>
+<p>Next, we can open this file and define some Elements to render. VistaGUI HTML consists of a <code>&lt;head&gt;</code> section and a <code>&lt;body&gt;</code> section. The <code>&lt;body&gt;</code> contains all the visible Elements in the Canvas, while the <code>&lt;head&gt;</code> contains things like CSS styling and meta-data.</p>
+<pre><code class="language-HTML">&lt;head&gt;
+    &lt;!-- We don't have any styling, so we leave the head empty. --&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;button&gt;Click Me!&lt;/button&gt;
+&lt;/body&gt;
+</code></pre>
+<p>This will add a single Button with the text "Click Me!" inside. Now, let's tell our Entity that we want to render this file.</p>
+<pre><code class="language-CSharp">public class MyScreenspaceCanvas : ScreenspaceGUICanvas
+{
+    // This function will run once on start.
+    public override void Start()
+    {
+        // Let the Entity know which .html file to render
+        PanelName = &quot;my-screenspace.html&quot;; 
+    }
+}
+</code></pre>
+<p>Now we have an Entity linked to a valid Vista HTML file, but if you try to use it you'll notice that nothing renders. This is because we need to tell the Entity to start the GUI once it's configured.</p>
+<p>We can do this in the <code>Start()</code> method by using <code>base.Start();</code> like so:</p>
+<pre><code class="language-CSharp">public class MyScreenspaceCanvas : ScreenspaceGUICanvas
+{
+    // This function will run once on start.
+    public override void Start()
+    {
+        // Let the Entity know which .html file to render
+        PanelName = &quot;my-screenspace.html&quot;;
+
+        // Start the GUI
+        base.Start();
+    }
+}
+</code></pre>
+<p>Now that we have a Canvas rendering to the screen with a button inside, let's add some functionality and allow it to generate a random number when pressed.</p>
+<h3 id="functionality">Functionality</h3>
+<p>VistaGUI can interact with the front-end within the C# API via the <a href="../events">Events</a> System. In this tutorial, we'll be using C# exclusively. However, VistaGUI also supports JavaScript and recommends using it for code that isn't engine-dependent. For more information on the relationship between JavaScript and C#, refer to the <a href="../intro">Intro to VistaGUI</a> page.</p>
+<p>Let's get started by triggering an event inside our previously created <code>.html</code> file using our buttons <code>onclick</code> attribute.</p>
+<pre><code class="language-HTML">&lt;head&gt;
+    &lt;!-- We don't have any styling, so we leave the head empty. --&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;button onclick=&quot;GenerateNumber()&quot;&gt;Click Me!&lt;/button&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Now, let's register some code to run when our <code>GenerateNumber</code> event gets triggered inside our Entity using <code>RegisterEvent</code>.</p>
+<pre><code class="language-CSharp">public class MyScreenspaceCanvas : ScreenspaceGUICanvas
+{
+    // This function will run once on start.
+    public override void Start()
+    {
+        // Let the Entity know which .html file to render
+        PanelName = &quot;my-screenspace.html&quot;;
+
+        // Start the GUI
+        base.Start();
+
+
+        // Register the &quot;GenerateNumber&quot; Event
+        RegisterEvent(&quot;GenerateNumber&quot;, GenerateNumber());
+        void GenerateNumber()
+        {
+            Console.WriteLine(&quot;Pressed Button!&quot;);
+        }
+    }
+}
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code>RegisterEvent()</code> Will run any <a href="https://learn.microsoft.com/en-us/dotnet/api/system.action?view=net-9.0">Action</a>, it doesn't have to be a defined function.</p>
+</div>
+<p>Clicking our Button will now log "Pressed Button!" to the Console. Let's add another level of interaction by making our button affect a Text element in our GUI.</p>
+<p>We'll start by adding another Element to our <code>.html</code> file.</p>
+<pre><code class="language-HTML">&lt;head&gt;
+    &lt;!-- We don't have any styling, so we leave the head empty. --&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;p&gt;My Text&lt;/p&gt;
+    &lt;button onclick=&quot;GenerateNumber()&quot;&gt;Click Me!&lt;/button&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Now we have a <code>&lt;p&gt;</code> Element rendering 'My Text' in our GUI. Let's expose this to our Entity code by using an <code>id</code> attribute.</p>
+<pre><code class="language-HTML">&lt;head&gt;
+    &lt;!-- We don't have any styling, so we leave the head empty. --&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;p id=&quot;my-text-element&quot;&gt;My Text&lt;/p&gt;
+    &lt;button onclick=&quot;GenerateNumber()&quot;&gt;Click Me!&lt;/button&gt;
+&lt;/body&gt;
+</code></pre>
+<p>We can now get a reference to this Element inside our Entity with the following code:</p>
+<pre><code class="language-CSharp">public class MyScreenspaceCanvas : ScreenspaceGUICanvas
+{
+    // This function will run once on start.
+    public override void Start()
+    {
+        // Let the Entity know which .html file to render
+        PanelName = &quot;my-screenspace.html&quot;;
+
+        // Start the GUI
+        base.Start();
+
+
+        // Register the &quot;GenerateNumber&quot; Event
+        RegisterEvent(&quot;GenerateNumber&quot;, GenerateNumber());
+        void GenerateNumber()
+        {
+            // Get our Text Element
+            VistaText myTextElement = Canvas.GetElementAsType&lt;VistaText&gt;(&quot;my-text-element&quot;);
+        }
+    }
+}
+</code></pre>
+<p>Let's finish our Entity by generating a random number and setting our Elements Text using <code>myTextElement.TextContent = "Text Goes Here"</code>.</p>
+<pre><code class="language-CSharp">public class MyScreenspaceCanvas : ScreenspaceGUICanvas
+{
+    // This function will run once on start.
+    public override void Start()
+    {
+        // Let the Entity know which .html file to render
+        PanelName = &quot;my-screenspace.html&quot;;
+
+        // Start the GUI
+        base.Start();
+
+
+        // Register the &quot;GenerateNumber&quot; Event
+        RegisterEvent(&quot;GenerateNumber&quot;, GenerateNumber());
+        void GenerateNumber()
+        {
+            // Get our Text Element
+            VistaText myTextElement = Canvas.GetElementAsType&lt;VistaText&gt;(&quot;my-text-element&quot;);
+
+            // Generate a random number (0-100)
+            Random random = new Random();
+            int randomNumber = random.Next(0, 101);
+
+            // Set our Text to the number
+            myTextElement.TextContent = randomNumber.ToString();
+        }
+    }
+}
+</code></pre>
+<p>Congratulations! You should now have a functional random number generator using VistaGUI.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../elementmanipulation/" class="btn btn-neutral float-left" title="Element Manipulation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../modding/intro/" class="btn btn-neutral float-right" title="Intro to Modding">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../elementmanipulation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../modding/intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
