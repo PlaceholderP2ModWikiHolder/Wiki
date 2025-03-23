@@ -25,4 +25,6 @@ nav:
     - Editor Plugins: editor/plugins.md
     - Editor Entities: editor/editorentities.md
     - Gizmos: editor/gizmos.md
+  - Rendering:
+    - Render Passes: rendering/renderpasses.md
 
