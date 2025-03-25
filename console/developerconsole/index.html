@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Gizmos - PlaceholderMod Wiki</title>
+    <title>Developer Console - PlaceholderMod Wiki</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Gizmos";
-        var mkdocs_page_input_path = "editor\\gizmos.md";
+        var mkdocs_page_name = "Developer Console";
+        var mkdocs_page_input_path = "console\\developerconsole.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,8 +52,16 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Console</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../console/developerconsole/">Developer Console</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Developer Console</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#logging-to-the-console">Logging to the Console</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#console-commands">Console Commands</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#console-variables">Console Variables</a>
+    </li>
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">File Formats</span></p>
@@ -89,16 +97,12 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Editor</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../plugins/">Editor Plugins</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/plugins/">Editor Plugins</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../editorentities/">Editor Entities</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/editorentities/">Editor Entities</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Gizmos</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#rendering-primitives">Rendering Primitives</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/gizmos/">Gizmos</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Rendering</span></p>
@@ -120,8 +124,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Editor</li>
-      <li class="breadcrumb-item active">Gizmos</li>
+          <li class="breadcrumb-item">Console</li>
+      <li class="breadcrumb-item active">Developer Console</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -130,33 +134,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="gizmos">Gizmos</h1>
-<p>When creating an Entity you may want to assign a custom Editor Gizmo. This can be acheived by overriding the <code>DrawGizmos()</code> and <code>DrawGizmosSelected()</code> functions of the Entity respectively.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To prevent Gizmo-related code from being included in the shipped game when not in use, wrap these functions in a <code>#if EDITOR</code> directive.</p>
-</div>
-<h2 id="rendering-primitives">Rendering Primitives</h2>
-<p>The <code>Gizmos</code> class offers features for rendering different types of Primitives within your Gizmos. To set the Color of a Primitive you can set <code>Gizmos.Color</code> before rendering the Primitive.</p>
-<pre><code class="language-CSharp">#if EDITOR
-public override void DrawGizmos()
+                <h1 id="developer-console">Developer Console</h1>
+<p>The C# API Provides easy-to-use methods of interacting with the <a href="https://developer.valvesoftware.com/wiki/Developer_console">Developer Console</a>.</p>
+<h2 id="logging-to-the-console">Logging to the Console</h2>
+<p>The Console can be written to via the <code>DeveloperConsole</code> class. This class provides three Logging methods: <code>Msg()</code>, which logs a simple white message; <code>Warning()</code>, which logs a yellow message; and <code>Error()</code> which logs a red message.</p>
+<pre><code class="language-CSharp">DeveloperConsole.Msg(&quot;White Logging Message&quot;);
+DeveloperConsole.Warning(&quot;Yellow Warning Message&quot;);
+DeveloperConsole.Error(&quot;Red Error Message&quot;);
+</code></pre>
+<h2 id="console-commands">Console Commands</h2>
+<p>Registering a ConCommand can be done through applying the <code>[ConCommand]</code> attribute to a static method.</p>
+<pre><code class="language-CSharp">[ConCommand(&quot;my_command&quot;)]
+static void MyCommand()
 {
-    // Draw a Red Cube sized at 32 units at the Entity position
-    Gizmos.Color = new Vector4(255, 0, 0, 1);
-    Gizmos.DrawCube(Transform.Position, new Vector3(32.0f, 32.0f, 32.0f));
+    DeveloperConsole.Msg(&quot;Hello World!&quot;);
 }
-#endif
 </code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Gizmo Primitives are not parented to the Entity by default.</p>
+<p>Console Commands will only work on <code>static</code> methods.</p>
+</div>
+<h2 id="console-variables">Console Variables</h2>
+<p>Registering a ConVar can be done through applying the [ConVar] attribute to a static property.</p>
+<pre><code class="language-CSharp">[ConVar(&quot;my_convar&quot;)]
+public static string MyConvar { get; set; } = &quot;My Awesome Convar&quot;;
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Console Variables will only work on <code>static</code> properties.</p>
 </div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../editorentities/" class="btn btn-neutral float-left" title="Editor Entities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../rendering/renderpasses/" class="btn btn-neutral float-right" title="Render Passes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../entities/globalentities/" class="btn btn-neutral float-left" title="Global Entities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../fileformats/keyvalues/" class="btn btn-neutral float-right" title="KeyValues">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -179,10 +191,10 @@ public override void DrawGizmos()
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../editorentities/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../entities/globalentities/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../../rendering/renderpasses/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../../fileformats/keyvalues/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
