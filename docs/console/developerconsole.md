@@ -34,3 +34,16 @@ public static string MyConvar { get; set; } = "My Awesome Convar";
 
 !!! warning
     Console Variables will only work on `static` properties.
+
+### Flags
+Console Variables support unique behaviour through the `ConVarFlag` enum. To apply a flag, include it in the `ConVar` constructor like so:
+
+```CSharp
+// Create a ConVar with the 'Save' Flag
+[ConVar("my_convar", ConVarFlag.Save)]
+public static string MyConvar { get; set; } = "My Awesome Convar";
+```
+
+| Flag     | Purpose     |
+|--------------|--------------|
+| **Save** | Enables the ConVar's value to persist between games. |
