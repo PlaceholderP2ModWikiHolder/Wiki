@@ -8,6 +8,8 @@ nav:
   - Entities:
     - Intro to Entities: entities/entityintro.md
     - Global Entities: entities/globalentities.md
+  - Console:
+    - Developer Console: console/developerconsole.md
   - File Formats:
     - KeyValues: fileformats/keyvalues.md
   - GUI:
