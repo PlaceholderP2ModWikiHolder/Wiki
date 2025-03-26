@@ -1,8 +1,8 @@
 # Code Mods
-Code Mods are mods that interface with the C# API to introduce new features, usually in the form of Game Components or something similar. They are highly versatile, both the Game code and the Editor code are Code Mods.
+Code Mods are mods that interface with the C# API to introduce new features, usually in the form of Entities or something similar. They are highly versatile, both the Game code and the Editor code are Code Mods.
 
 ## Creating a Code Mod
-To create a Code Mod, place a `.dll` file linked to `Engine.dll` inside the `bin/mods` folder. By default, all Game Components defined in the mod's `.dll` will be usable in-game automatically.
+To create a Code Mod, place a `.dll` file linked to `Engine.dll` inside the `bin/mods` folder. By default, all Entities defined in the mod's `.dll` will be usable in-game automatically.
 
 ## Mod Entry-Points
 Mods can optionally define an "Entry-Point" which allows the Mod to automatically run code when it is loaded or unloaded by the engine. To add an Entry-Point to your Mod, create a class that inherits from the `IMod` interface and implement both the `OnLoad()` and `OnUnload()` methods.

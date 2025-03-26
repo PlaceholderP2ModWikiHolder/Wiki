@@ -3,10 +3,10 @@ An Event is a function that is triggered from HTML or JavaScript and then execut
 
 Calling an Event is just like calling a JavaScript function, for example, using `onclick="EventName()"` inside a button will call the 'EventName()' Event assuming the function isn't already defined inside JavaScript.
 
-Registering an Event inside C# is done by running `RegisterEvent("EventName", Action);` on a GUICanvas component. This will trigger the specified Action when 'EventName()' is called.
+Registering an Event inside C# is done by running `RegisterEvent("EventName", Action);` on a GUICanvas entity. This will trigger the specified Action when 'EventName()' is called.
 
 ## Unregistering Events
-Events should be unregistered when the associated component is destroyed, you can unregister events through `UnregisterEvent("EventName")` in the `OnDestroy()` method.
+Events should be unregistered when the associated entity is destroyed, you can unregister events through `UnregisterEvent("EventName")` in the `OnDestroy()` method.
 
 ## Examples
 
