@@ -50,6 +50,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../entities/globalentities/">Global Entities</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/entityio/">Entity Inputs and Outputs</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Console</span></p>
               <ul>
@@ -135,9 +137,9 @@
                 <h1 id="events">Events</h1>
 <p>An Event is a function that is triggered from HTML or JavaScript and then executes code via the C# API.</p>
 <p>Calling an Event is just like calling a JavaScript function, for example, using <code>onclick="EventName()"</code> inside a button will call the 'EventName()' Event assuming the function isn't already defined inside JavaScript.</p>
-<p>Registering an Event inside C# is done by running <code>RegisterEvent("EventName", Action);</code> on a GUICanvas component. This will trigger the specified Action when 'EventName()' is called.</p>
+<p>Registering an Event inside C# is done by running <code>RegisterEvent("EventName", Action);</code> on a GUICanvas entity. This will trigger the specified Action when 'EventName()' is called.</p>
 <h2 id="unregistering-events">Unregistering Events</h2>
-<p>Events should be unregistered when the associated component is destroyed, you can unregister events through <code>UnregisterEvent("EventName")</code> in the <code>OnDestroy()</code> method.</p>
+<p>Events should be unregistered when the associated entity is destroyed, you can unregister events through <code>UnregisterEvent("EventName")</code> in the <code>OnDestroy()</code> method.</p>
 <h2 id="examples">Examples</h2>
 <p><strong>Setting Text with an Event</strong></p>
 <pre><code class="language-HTML">&lt;button onclick=&quot;SetText()&quot;&gt;Set Text&lt;/button&gt;

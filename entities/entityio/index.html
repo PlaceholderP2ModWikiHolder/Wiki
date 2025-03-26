@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Working With Files - PlaceholderMod Wiki</title>
+    <title>Entity Inputs and Outputs - PlaceholderMod Wiki</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Working With Files";
-        var mkdocs_page_input_path = "filesystem\\filesystem.md";
+        var mkdocs_page_name = "Entity Inputs and Outputs";
+        var mkdocs_page_input_path = "entities\\entityio.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -45,12 +45,18 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Entities</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../entities/entityintro/">Intro to Entities</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../entityintro/">Intro to Entities</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../entities/globalentities/">Global Entities</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../globalentities/">Global Entities</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../entities/entityio/">Entity Inputs and Outputs</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Entity Inputs and Outputs</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#defining-an-input">Defining an Input</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#firing-an-output">Firing an Output</a>
+    </li>
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Console</span></p>
@@ -84,18 +90,10 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">File System</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Working With Files</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#getting-an-asset-path">Getting an Asset Path</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#getting-an-asset">Getting an Asset</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#asset-search-paths">Asset Search Paths</a>
-    </li>
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filesystem/filesystem/">Working With Files</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../gameinfo/">GameInfo</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filesystem/gameinfo/">GameInfo</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Editor</span></p>
@@ -126,8 +124,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">File System</li>
-      <li class="breadcrumb-item active">Working With Files</li>
+          <li class="breadcrumb-item">Entities</li>
+      <li class="breadcrumb-item active">Entity Inputs and Outputs</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -136,20 +134,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="working-with-files">Working With Files</h1>
-<p>PlaceholderMod uses a unique file structure, utilising features such as mounted game support. The C# API provides comprehensive functionality for managing and working with files across game-specific and mounted folders and packages.</p>
-<h2 id="getting-an-asset-path">Getting an Asset Path</h2>
-<p>Each asset type has an associated FileSystem function to get its path. For example, <code>GetMaterialPath("metal/material_name")</code> will return the path to a <code>.vmt</code> file called 'material_name' inside 'materials/metal'.</p>
-<h2 id="getting-an-asset">Getting an Asset</h2>
-<p>Some asset types support directly retrieving their type through a FileSystem function. For example, <code>GetMaterial("material_name")</code> will return the Material object for 'material_name'.</p>
-<h2 id="asset-search-paths">Asset Search Paths</h2>
-<p>When getting an Asset by its path or reference, the File System will first search the Game directory. If it fails to find the Asset in the Game directory, it will then search mounted Game directories. This causes local Game Assets to always take priority over mounted Game Assets.</p>
+                <h1 id="entity-inputs-and-outputs">Entity Inputs and Outputs</h1>
+<p>The C# API provides easy-to-use methods of integrating an Entity into the <a href="https://developer.valvesoftware.com/wiki/Inputs_and_Outputs">Map I/O System</a>.</p>
+<h2 id="defining-an-input">Defining an Input</h2>
+<p>Inputs can be defined by applying the <code>[Input]</code> attribute to a method. Any method with this attribute will automatically be callable through Map Logic.</p>
+<pre><code class="language-CSharp">[Entity(&quot;my_entity&quot;)]
+public class MyEntity : BaseEntity
+{
+    [Input]
+    public void PrintConsoleMessage()
+    {
+        DeveloperConsole.Msg(&quot;Input was ran!&quot;);
+    }
+
+}
+</code></pre>
+<h2 id="firing-an-output">Firing an Output</h2>
+<p>Outputs can be triggered using the <code>FireOutput()</code> method, which will fire all outputs connected to the provided name parameter.</p>
+<pre><code class="language-CSharp">[Entity(&quot;my_entity&quot;)]
+public class MyEntity : BaseEntity
+{
+    public override void Start()
+    {
+        FireOutput(&quot;Started&quot;);
+    }
+}
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../modding/codemods/" class="btn btn-neutral float-left" title="Code Mods"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../gameinfo/" class="btn btn-neutral float-right" title="GameInfo">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../globalentities/" class="btn btn-neutral float-left" title="Global Entities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../console/developerconsole/" class="btn btn-neutral float-right" title="Developer Console">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -172,10 +188,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../modding/codemods/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../globalentities/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../gameinfo/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../../console/developerconsole/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

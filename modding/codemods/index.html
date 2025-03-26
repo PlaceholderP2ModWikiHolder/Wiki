@@ -50,6 +50,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../entities/globalentities/">Global Entities</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/entityio/">Entity Inputs and Outputs</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Console</span></p>
               <ul>
@@ -135,9 +137,9 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="code-mods">Code Mods</h1>
-<p>Code Mods are mods that interface with the C# API to introduce new features, usually in the form of Game Components or something similar. They are highly versatile, both the Game code and the Editor code are Code Mods.</p>
+<p>Code Mods are mods that interface with the C# API to introduce new features, usually in the form of Entities or something similar. They are highly versatile, both the Game code and the Editor code are Code Mods.</p>
 <h2 id="creating-a-code-mod">Creating a Code Mod</h2>
-<p>To create a Code Mod, place a <code>.dll</code> file linked to <code>Engine.dll</code> inside the <code>bin/mods</code> folder. By default, all Game Components defined in the mod's <code>.dll</code> will be usable in-game automatically.</p>
+<p>To create a Code Mod, place a <code>.dll</code> file linked to <code>Engine.dll</code> inside the <code>bin/mods</code> folder. By default, all Entities defined in the mod's <code>.dll</code> will be usable in-game automatically.</p>
 <h2 id="mod-entry-points">Mod Entry-Points</h2>
 <p>Mods can optionally define an "Entry-Point" which allows the Mod to automatically run code when it is loaded or unloaded by the engine. To add an Entry-Point to your Mod, create a class that inherits from the <code>IMod</code> interface and implement both the <code>OnLoad()</code> and <code>OnUnload()</code> methods.</p>
 <pre><code class="language-CSharp">// Entry-Point for 'MyMod'
