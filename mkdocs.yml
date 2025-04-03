@@ -31,4 +31,6 @@ nav:
     - Gizmos: editor/gizmos.md
   - Rendering:
     - Render Passes: rendering/renderpasses.md
+  - Development Blog:
+    - April 3rd Update: blog/03-04-25.md
 
