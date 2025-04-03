@@ -133,25 +133,23 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="vista-elements">Vista Elements</h1>
-<p>PlaceholderMod ships with custom VistaGUI Elements designed to simplify the process of developing Game GUIs. Below is a list of all custom Elements along with their respective <code>.js</code> file.</p>
+<p>PlaceholderMod ships with custom VistaGUI Elements designed to simplify the process of developing Game GUIs. Below is a list of all custom Elements along with their purpose.</p>
 <table>
 <thead>
 <tr>
 <th>Element</th>
 <th>Purpose</th>
-<th><code>.js</code> File</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>&lt;vista-panel&gt;</code></td>
 <td>A Draggable Panel</td>
-<td><code>panels.js</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="using-vista-elements">Using Vista Elements</h2>
-<p>To use a Vista Element in your HTML, include the appropriate <code>.js</code> file from <code>gui/elements</code> and then treat it like any other HTML Element. For example, to use <code>&lt;vista-panel&gt;</code> add the following line to your file's <code>&lt;head&gt;</code>: <code>&lt;script src="file:///elements/panels.js"&gt;&lt;/script&gt;</code> and then you can add it to the page like so:</p>
+<p>Vista Elements are used in the same way as any other Element. For example:</p>
 <pre><code class="language-HTML">&lt;vista-panel&gt;
     &lt;p&gt;My Vista Panel&lt;/p&gt;
 &lt;/vista-panel&gt;
