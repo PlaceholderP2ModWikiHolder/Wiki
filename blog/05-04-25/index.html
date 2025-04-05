@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Editor Plugins - PlaceholderMod Wiki</title>
+    <title>April 5th Update - PlaceholderMod Wiki</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Editor Plugins";
-        var mkdocs_page_input_path = "editor\\plugins.md";
+        var mkdocs_page_name = "April 5th Update";
+        var mkdocs_page_input_path = "blog\\05-04-25.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -91,14 +91,12 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Editor</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Editor Plugins</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/plugins/">Editor Plugins</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../editorentities/">Editor Entities</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/editorentities/">Editor Entities</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../gizmos/">Gizmos</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/gizmos/">Gizmos</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Rendering</span></p>
@@ -107,10 +105,20 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development Blog</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/03-04-25/">April 3rd Update</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../03-04-25/">April 3rd Update</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/05-04-25/">April 5th Update</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">April 5th Update</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#input-binding">Input Binding</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#brush-geometry-changes">Brush Geometry Changes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#brush-entities">Brush Entities</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#roadmap">Roadmap</a>
+    </li>
+    </ul>
                   </li>
               </ul>
       </div>
@@ -127,8 +135,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Editor</li>
-      <li class="breadcrumb-item active">Editor Plugins</li>
+          <li class="breadcrumb-item">Development Blog</li>
+      <li class="breadcrumb-item active">April 5th Update</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -137,14 +145,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="editor-plugins">Editor Plugins</h1>
-<p>The Editor allows for functionality to be extended through Plugins. Internally, plugins are essentially the same as Mods, with the only difference being a plugin's <code>.dll</code> links to both <code>Engine.dll</code> and <code>Editor.dll</code>.</p>
+                <h1 id="april-5th-update">April 5th Update</h1>
+<h2 id="input-binding">Input Binding</h2>
+<p>You can now properly bind keys to actions and run C# code when an action is pressed or unpressed. Binds are automatically saved to the config (making them persist between games) and can be set/unset through the Developer Console, just like in Source.</p>
+<p><img alt="Keybinds being set in console" src="../assets/bind-console.png" /></p>
+<p>Input can still processed through the traditional <code>Input.GetKeyDown(keyname)</code> method, but the new actions system requires minimal setup in projects and works better in pretty much every situation.</p>
+<h2 id="brush-geometry-changes">Brush Geometry Changes</h2>
+<p>Brushes now construct themselves a bit differently: each Side functions as it's own Mesh Entity instead of the entire map being one big Mesh Entity. Along with this change comes a few big features like side-independant Materials.</p>
+<p><img alt="Side Materials Showcase" src="../assets/sidematerials.png" /></p>
+<p>Every Brush can now have a unique Material on every Side, restoring the original behaviour from before before the engine swap. Additionally, there's also now some Tool materials being introduced.</p>
+<p><img alt="Nodraw view in Hammer" src="../assets/nodraw-hammer.png" /></p>
+<p><img alt="Nodraw view in Editor" src="../assets/nodraw-editor.png" /></p>
+<p>Nodraw does it's job and soon enough will be culling faces behind it too.</p>
+<h2 id="brush-entities">Brush Entities</h2>
+<p>Brush Entity support is almost ready. Entities have been reorganized into <code>BaseEntity</code> and <code>PointEntity</code> classes, with a fully functional <code>BrushEntity</code> hopefully getting added within the next two updates.</p>
+<h2 id="roadmap">Roadmap</h2>
+<p>It's still a bit early to be commiting to any dates, but I can share some facts about the state of the Engine.</p>
+<p><strong>Brushes are around 70% feature complete</strong> with there only being a few remaining features like Tool textures and moving to proper Plane-Based CSG calculating left until they're perfectly usable.</p>
+<p><strong>20 Entities have been ported</strong> and are available for use already.</p>
+<p><strong>Map Logic is almost complete</strong>, all that's left is porting more Entities and adding Delays.</p>
+<p><strong>Real Time Lighting is almost complete</strong> with a VRAD-esque Baked lighting solution coming soon.</p>
+<p><strong>FGD Generation</strong> is in the conceptual stage and will be worked on once I can figure out how to make it all integrate easily with an original Hammer install.</p>
+<p>All that to say, progress has been made insanely fast. Once all these features are wrapped up, the next steps will be porting Portal 2 Entities, refactoring and polishing it all and then the Mod can resume development alongside the Engine. At some point, I'll put together some tech demos and showcases to show any interested Developers. Hopefully, that'll be enough to kickstart actual Mod production.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../filesystem/gameinfo/" class="btn btn-neutral float-left" title="GameInfo"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../editorentities/" class="btn btn-neutral float-right" title="Editor Entities">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../03-04-25/" class="btn btn-neutral float-left" title="April 3rd Update"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -167,10 +194,8 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../filesystem/gameinfo/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../03-04-25/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../editorentities/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
