@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Editor Plugins - PlaceholderMod Wiki</title>
+    <title>April 12th Update - PlaceholderMod Wiki</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Editor Plugins";
-        var mkdocs_page_input_path = "editor\\plugins.md";
+        var mkdocs_page_name = "April 12th Update";
+        var mkdocs_page_input_path = "blog\\12-04-25.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -91,14 +91,12 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Editor</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Editor Plugins</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/plugins/">Editor Plugins</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../editorentities/">Editor Entities</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/editorentities/">Editor Entities</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../gizmos/">Gizmos</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../editor/gizmos/">Gizmos</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Rendering</span></p>
@@ -107,12 +105,22 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development Blog</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/03-04-25/">April 3rd Update</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../03-04-25/">April 3rd Update</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/05-04-25/">April 5th Update</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-04-25/">April 5th Update</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/12-04-25/">April 12th Update</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">April 12th Update</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#physics">Physics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#culling">Culling</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#shader-texture-uniforms">Shader Texture Uniforms</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mdl-loading">MDL Loading</a>
+    </li>
+    </ul>
                   </li>
               </ul>
       </div>
@@ -129,8 +137,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Editor</li>
-      <li class="breadcrumb-item active">Editor Plugins</li>
+          <li class="breadcrumb-item">Development Blog</li>
+      <li class="breadcrumb-item active">April 12th Update</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -139,14 +147,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="editor-plugins">Editor Plugins</h1>
-<p>The Editor allows for functionality to be extended through Plugins. Internally, plugins are essentially the same as Mods, with the only difference being a plugin's <code>.dll</code> links to both <code>Engine.dll</code> and <code>Editor.dll</code>.</p>
+                <h1 id="april-12th-update">April 12th Update</h1>
+<h2 id="physics">Physics</h2>
+<p>A Proper Physics system has been implemented into the Engine, you can give any Model Entity physics with unique properties like mass, collision settings, friction, etc. Along with this, Raycasting is now supported using Physics Body colliders. While complex interactions from Source aren't fully there yet (hinges, joints, ropes, etc) they're on the way.</p>
+<p>It uses <a href="https://en.wikipedia.org/wiki/Bullet_(software)">Bullet Physics</a> right now, but the Physics System was designed to support virtually infinite APIs. The plan is to ship with Bullet, Jolt and maybe one other.</p>
+<h2 id="culling">Culling</h2>
+<p>Render Passes now have a Flag to Cull Back-Faces, Front-Faces, or both. The Opaque pass uses Back-Face culling by default to improve perfomance and also allow the <code>NODRAW</code> Texture to properly cull, just like it does in Source.</p>
+<p><img alt="NODRAW in Hammer" src="../assets/nodraw-hammer-2.png" /></p>
+<p><img alt="NODRAW in Engine" src="../assets/nodraw-engine-2.png" /></p>
+<h2 id="shader-texture-uniforms">Shader Texture Uniforms</h2>
+<p>You can now set a Shader's <code>Sampler2D</code> parameter to a Texture directly through code, as expected. This used to be completely hard-coded with the only way to work with a Texture on a mesh being through accessing <code>Material.Texture</code>. This old method has been replaced by the much cleaner system where you simply update the Shader parameter with <code>Material.Shader.SetParameter("Sampler2DParameterName", DesiredTexture);</code></p>
+<h2 id="mdl-loading">MDL Loading</h2>
+<p>Saving the best for last, Portal 2 <code>.MDL</code> Models can now load natively into the Engine. Props placed in Hammer appear the exact same in game, with no texture or model conversion, and no extra processing required. What you see in Hammer is what you get in the Engine.</p>
+<p><img alt="MDL Model loaded in Engine" src="../assets/mdl-import.png" /></p>
+<p>Right now, all the major generic 3D Model formats are supported (OBJ, FBX, etc). However, MDLs hold a lot more data then just Mesh information and things can get confusing if <em>all</em> formats are usable when some hold more information than others. Because of this, full generic format support will likely get put on the back-burner for now (but it's still a consideration!).</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../filesystem/gameinfo/" class="btn btn-neutral float-left" title="GameInfo"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../editorentities/" class="btn btn-neutral float-right" title="Editor Entities">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../05-04-25/" class="btn btn-neutral float-left" title="April 5th Update"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -169,10 +188,8 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../filesystem/gameinfo/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../05-04-25/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../editorentities/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
