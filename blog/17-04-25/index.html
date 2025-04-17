@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Intro to Entities - PlaceholderMod Wiki</title>
+    <title>April 17th Update - PlaceholderMod Wiki</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Intro to Entities";
-        var mkdocs_page_input_path = "entities\\entityintro.md";
+        var mkdocs_page_name = "April 17th Update";
+        var mkdocs_page_input_path = "blog\\17-04-25.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -45,26 +45,12 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Entities</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Intro to Entities</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#exposing-entity-variables-to-the-editor">Exposing Entity Variables to the Editor</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#entity-deletion">Entity Deletion</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#entity-types">Entity Types</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#point-entity">Point Entity</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#brush-entity">Brush Entity</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/entityintro/">Intro to Entities</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../globalentities/">Global Entities</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/globalentities/">Global Entities</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../entityio/">Entity Inputs and Outputs</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../entities/entityio/">Entity Inputs and Outputs</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Console</span></p>
@@ -119,14 +105,28 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development Blog</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/03-04-25/">April 3rd Update</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../03-04-25/">April 3rd Update</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/05-04-25/">April 5th Update</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-04-25/">April 5th Update</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/12-04-25/">April 12th Update</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-04-25/">April 12th Update</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../blog/17-04-25/">April 17th Update</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">April 17th Update</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#physics-changes">Physics Changes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#brush-entities">Brush Entities</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#character-controller">Character Controller</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#transparency">Transparency</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#brush-csg">Brush CSG</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#input-presses">Input Presses</a>
+    </li>
+    </ul>
                   </li>
               </ul>
       </div>
@@ -143,8 +143,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Entities</li>
-      <li class="breadcrumb-item active">Intro to Entities</li>
+          <li class="breadcrumb-item">Development Blog</li>
+      <li class="breadcrumb-item active">April 17th Update</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -153,72 +153,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="intro-to-entities">Intro To Entities</h1>
-<p>PlaceholderMod allows the creation of <a href="https://developer.valvesoftware.com/wiki/Entity">Entities</a> through C# Scripting. To define an Entity, you need to inherit from BaseEntity and override <code>OnStart()</code> and <code>OnUpdate()</code> methods for all logic.</p>
-<pre><code class="language-CSharp">public class MyEntity : BaseEntity
-{
-    // This will run once on Start
-    public override void Start()
-    {
-        Console.WriteLine(&quot;Starting MyEntity...&quot;);
-    }
-
-    // This will run once per frame
-    public override void Update()
-    {
-        Console.WriteLine(&quot;Updating MyEntity!&quot;);
-    }
-}
-</code></pre>
-<h2 id="exposing-entity-variables-to-the-editor">Exposing Entity Variables to the Editor</h2>
-<p>To expose an Entity Variable to the Editor, you can utilize the <code>[EntityProperty]</code> Attribute. Any Variables marked with this Attribute will be accessible and editable directly from the Editor.</p>
-<pre><code class="language-CSharp">[EntityProperty(&quot;light_color&quot;)]
-public Vector4 Color = new Vector4(255.0f, 255.0f, 255.0f, 200.0f);
-</code></pre>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Entity Properties only support the Datatypes that the <a href="../../fileformats/keyvalues">KeyValues</a> format supports.</p>
-</div>
-<h2 id="entity-deletion">Entity Deletion</h2>
-<p>Entities can be deleted through the <code>Entity.DestroyDeferred()</code> method. This method will clean up the Entities with their <code>OnDestroy()</code> method before deleting it from the world.</p>
-<pre><code class="language-CSharp">// Run any Entity clean-up and then remove it from the World
-EntityReference.DestroyDeferred();
-</code></pre>
-<h2 id="entity-types">Entity Types</h2>
-<p>Entities come in 2 primary types, Point Entities and Brush Entities.</p>
-<h3 id="point-entity">Point Entity</h3>
-<p>A Point Entity is an Entity that occupies a single point in the world.</p>
-<pre><code class="language-CSharp">public class PropEntity : MeshEntity
-{
-    /// &lt;summary&gt;
-    /// Create Mesh from this path.
-    /// &lt;/summary&gt;
-    [EntityProperty(&quot;model&quot;)]
-    public string MeshPath;
-
-    /// &lt;summary&gt;
-    /// Get Material from this path.
-    /// &lt;/summary&gt;
-    [EntityProperty(&quot;skin&quot;)]
-    public string MaterialPath;
-
-    public override void Start()
-    {
-        Material material = FileSystem.GetMaterial(MaterialPath);
-        Mesh = new Mesh(FileSystem.GetModelPath(MeshPath), material);
-
-        GameWindow.CurrentWindow.Renderer.InitMesh(Mesh); // Render the (empty) mesh
-    }
-}
-</code></pre>
-<h3 id="brush-entity">Brush Entity</h3>
-<p>A Brush Entity is an Entity that occupies Map Geometry (Brushes).</p>
+                <h1 id="april-17th-update">April 17th Update</h1>
+<h2 id="physics-changes">Physics Changes</h2>
+<p>A LOT of things have changed with the Physics system. You can now detect Physics Body collisions with events like <code>OnCollisionStart</code>, constrain rotation axes, set bodies to Dynamic, Kinematic or Static modes, and more. It's too much to cover in detail, but physics interactions should feel much better now and much closer to Source.</p>
+<h2 id="brush-entities">Brush Entities</h2>
+<p>Support for Brush Entities has been added, meaning a lot of critical Entities can finally be ported. Some initial porting work has already been done, with <code>trigger_once</code> and <code>trigger_multiple</code> now being fully usable.</p>
+<p><img alt="Trigger rendered with showtriggers_toggle" src="../assets/triggers.png" /></p>
+<h2 id="character-controller">Character Controller</h2>
+<p>There's now a true physics based FPS Character Controller. It can walk, jump, push physics objects and properly collide with the world. It's not exact to Source just yet, but features like airstrafing, bunnyhopping, built-in interacting and all the other beloved mechanics will be there soon.</p>
+<h2 id="transparency">Transparency</h2>
+<p>There's now an actual Transparency Render Pass. Objects with the correct VMT flags will render with proper alpha blending, showing the objects behind them.</p>
+<p><img alt="A Transparent Grate" src="../assets/grate.png" /></p>
+<h2 id="brush-csg">Brush CSG</h2>
+<p>Brush sides are no longer limited to just simple quads. Each side uses the same <a href="https://developer.valvesoftware.com/wiki/VMF_%28Valve_Map_Format%29#Planes">plane construction method</a> as Source, allowing advanced Brush manipulation to be done in Hammer with tools like the Clipping tool.</p>
+<p><img alt="Complex Brush Geometry" src="../assets/brush-geo.png" /></p>
+<h2 id="input-presses">Input Presses</h2>
+<p>You no longer have to manually managle single-press input logic. The Input class now has <code>GetPressed()</code>, which returns true on the first frame the specified action is pressed.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../.." class="btn btn-neutral float-left" title="About"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../globalentities/" class="btn btn-neutral float-right" title="Global Entities">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../12-04-25/" class="btn btn-neutral float-left" title="April 12th Update"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -241,10 +196,8 @@ EntityReference.DestroyDeferred();
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../12-04-25/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../globalentities/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
